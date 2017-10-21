@@ -12,7 +12,7 @@ var map = AmCharts.makeChart( "chartdiv", {
   ],
 
   "areasSettings": {
-    "autoZoom": true,
+    "autoZoom": false,
     "selectedColor": "#CC0000"
   },
 
@@ -31,6 +31,8 @@ var map = AmCharts.makeChart( "chartdiv", {
     "format": "json"
   },
 
-  "autoZoom": false
-  
+  "zoomOnDoubleClick": false,
+    
 });
+
+console.log(map);
