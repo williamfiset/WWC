@@ -12,6 +12,7 @@ var map = AmCharts.makeChart( "chartdiv", {
   ],
 
   "areasSettings": {
+    "accessibleLabel": "",
     "autoZoom": false,
     "selectedColor": "#CC0000",
     "selectable": true,
@@ -48,9 +49,6 @@ function triggerSelectedStateClick(clickEvent) {
   var stateName = clickEvent.mapObject.title;
 
   console.log(stateId + " " + stateName);
-
 }
-
-console.log(map);
 
 map.addListener("clickMapObject", triggerSelectedStateClick);
