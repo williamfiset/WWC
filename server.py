@@ -32,13 +32,14 @@ def _get_map_data(raw_data, col_name):
     map_dict = {"map": "usaLow", "areas": []}
     for state_data in raw_data:
         st_code = state_data["ST"]
-        formatted_st_code = "US-" + st_code
-        val = parse_money(state_data[col_name])
-        map_dict["areas"].append({
-            "id": formatted_st_code,
-            "value": val,
-            "description": "Average Annual Income: $%s\nMedian Annual Income: $%s" % (state_data[col_name], state_data["A_MEDIAN"])
-        })
+        # Sorry DC
+        if st_code != "DC":
+            formatted_st_code = "US-" + st_code
+            val = parse_money(state_data[col_name])
+            map_dict["areas"].append({
+                "id": formatted_st_code,
+                "value": val,
+            })
     return map_dict
 
 @app.route("/major/<string:state>")
@@ -53,11 +54,11 @@ def _get_state_data(data, state):
     for state_data in data:
         if state_data["ST"] == state:
             major = state_data["OCC_TITLE"]
-	    occ = major.find(" Occupations")
-	    if occ != -1:
-	      major = major[:occ]
-            salary = float(state_data["A_MEAN"].replace(",",""))
-            state_dict["major_salary_pairs"].append({"major": major, "salary": salary})
+            occ = major.find(" Occupations")
+            if occ != -1:
+                major = major[:occ]
+                salary = float(state_data["A_MEAN"].replace(",",""))
+                state_dict["major_salary_pairs"].append({"major": major, "salary": salary})
     print (state_dict)
     return state_dict
 

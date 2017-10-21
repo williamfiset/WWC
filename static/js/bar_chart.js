@@ -19,6 +19,9 @@ function display_bar(state_id, state_name) {
 	    MAJORS.push(pair["major"]);
 	    SALARIES.push(pair["salary"]);
 	  });
+          if (window.myHorizontalBar !== undefined) {
+            window.myHorizontalBar.destroy();
+          }
 	  var color = Chart.helpers.color;
 	  var barChartData = {
 	    labels: MAJORS,
@@ -80,6 +83,9 @@ function display_double_bar(state_id1, state_name1, state_id2, state_name2) {
               } else {
                 ST2_SALARIES.push(pair2["salary"]);
                 ST1_SALARIES[index] = 0;
+              }
+              if (window.myHorizontalBar !== undefined) {
+                window.myHorizontalBar.destroy();
               }
                   var color = Chart.helpers.color;
 		  var barChartData = {

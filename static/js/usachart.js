@@ -12,16 +12,19 @@ var map = AmCharts.makeChart( "chartdiv", {
   ],
 
   "areasSettings": {
+    "accessibleLabel": "",
     "autoZoom": false,
     "selectedColor": "#CC0000",
     "selectable": true,
-    "balloonText": "[[description]]"
+    "balloonText": "<b>[[title]]</b><br />Average Annual Income: $[[value]]",
+    "descriptionWindowWidth": 0,
+    "descriptionWindowHeight": 0
   },
 
   "valueLegend": {
     "right": 5,
-    "minValue": "Poor",
-    "maxValue": "Rich",
+    "minValue": "$28,740",
+    "maxValue": "$60,840",
     "showAsGradient": true
   },
 
@@ -38,6 +41,8 @@ var map = AmCharts.makeChart( "chartdiv", {
     "zoomControlEnabled": false
   },
 
+  "dragMap": false,
+
   "zoomOnDoubleClick": false,
 
 });
@@ -52,7 +57,5 @@ function triggerSelectedStateClick(clickEvent) {
   display_bar(stateId.substring(3), stateName);
 
 }
-
-console.log(map);
 
 map.addListener("clickMapObject", triggerSelectedStateClick);
