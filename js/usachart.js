@@ -4,11 +4,12 @@ var map = AmCharts.makeChart( "chartdiv", {
   "theme": "light",
   "colorSteps": 10,
 
-  // "titles": [
-  //   "size": 15,
-  //   "text": "Chart Title"
-  // ],
-
+  "titles": [
+    {
+      "size": 15,
+      "text": "USA Wealth Heatmap"
+    }
+  ],
 
   "areasSettings": {
     "autoZoom": true
