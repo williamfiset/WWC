@@ -3,7 +3,13 @@
   height: 500px;
 }
 
+body {
+  background-color: rgb(220, 220, 220) !important;
+}
+
 #bardiv {
   width: 90%;
   margin: 20px;
+}
+
 }

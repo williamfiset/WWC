@@ -24,7 +24,7 @@ var map = AmCharts.makeChart( "chartdiv", {
   },
 
   "export": {
-    "enabled": true
+    "enabled": false
   },
 
   "dataLoader": {
@@ -32,14 +32,21 @@ var map = AmCharts.makeChart( "chartdiv", {
     "format": "json"
   },
 
+  "zoomControl": {
+      "zoomControlEnabled": false
+  },
+
   "zoomOnDoubleClick": false,
 
 });
 
 function triggerSelectedStateClick(clickEvent) {
+  
   var stateId = clickEvent.mapObject.id;
   var stateName = clickEvent.mapObject.title;
+  
   console.log(stateId + " " + stateName);
+
 }
 
 console.log(map);
