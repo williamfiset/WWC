@@ -1,4 +1,18 @@
-var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var MAJORS = [];
+var SALARIES = [];
+
+$.ajax({
+  url: "/major/AL",
+  type: "GET",
+  dataType: "json"
+}).done(function(result) {
+  var data = result;
+  for (var pair in data["major_salary_pairs"]) {
+    MAJORS.push(pair["major"]);
+    SALARIES.push(pair["salary"]);
+  }
+});
+
 var color = Chart.helpers.color;
 var barChartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -7,15 +21,7 @@ var barChartData = {
 	backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
 	borderColor: window.chartColors.blue,
 	borderWidth: 1,
-	data: [
-	    randomScalingFactor(),
-	    randomScalingFactor(),
-	    randomScalingFactor(),
-	    randomScalingFactor(),
-	    randomScalingFactor(),
-	    randomScalingFactor(),
-	    randomScalingFactor()
-	]
+	data: SALARIES,
     }]
 
 };

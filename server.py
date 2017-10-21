@@ -39,7 +39,7 @@ def _get_map_data(raw_data, col_name):
     return map_dict
  
 @app.route("/major/<string:state>")
-def get_state_data():
+def get_state_data(state):
     with open(os.path.join(SITE_ROOT, "templates/json/state_M2016_major.json"), "r") as rh:
         data = json.load(rh)
     state_data = _get_state_data(data, state)
@@ -50,12 +50,10 @@ def _get_state_data(data, state):
     for state_data in data:
         if state_data["ST"] == state:
             major = state_data["OCC_TITLE"]
-            salary = float(state_data["A_MEAN"])
+            salary = float(state_data["A_MEAN"].replace(",",""))
             state_dict["major_salary_pairs"].append({"major": major, "salary": salary})
-    print state_dict
+    print (state_dict)
     return state_dict
-
-
 
 if __name__ == "__main__":
     app.run()
