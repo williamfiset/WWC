@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <head>
     <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/creative.css') }}" />
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+
 
     <!-- JahQuery -->
     <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
@@ -42,18 +44,44 @@
     </script>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div style="text-align: center;" class="col-lg">
-        <h1> Women Who Code </h1>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Women Who Code</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </div>
+    </nav>
+
+
 
   <!-- HTML -->
-  <div id="chartdiv"></div>
+  <div style="margin-top: 100px;" class="container">
+    <div id="chartdiv">
+
+    </div>
+  </div>
   <div id="bardiv">
     <canvas id="canvas" width="1896" height="948" class="chartjs-render-monitor" style="display: block; height: 474px; width: 948px;"></canvas>
   </div>
+
+  <!-- Pretty Template -->
+  <script src="{{ url_for('static', filename='js/creative.js') }}" />
 
 </body>
