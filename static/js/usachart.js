@@ -16,7 +16,7 @@ var map = AmCharts.makeChart( "chartdiv", {
     "autoZoom": false,
     "selectedColor": "#CC0000",
     "selectable": true,
-    "balloonText": "[[description]]",
+    "balloonText": "Average Annual Income: $[[value]]",
     "descriptionWindowWidth": 0,
     "descriptionWindowHeight": 0
   },
