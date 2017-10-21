@@ -41,7 +41,7 @@ var map = AmCharts.makeChart( "chartdiv", {
     "zoomControlEnabled": false
   },
 
-
+  "dragMap": false,
 
   "zoomOnDoubleClick": false,
 
@@ -59,5 +59,3 @@ function triggerSelectedStateClick(clickEvent) {
 }
 
 map.addListener("clickMapObject", triggerSelectedStateClick);
-
-map.dragMap = false;
