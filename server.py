@@ -19,9 +19,6 @@ def muh_data():
     with open(os.path.join(SITE_ROOT, "templates/json/state_M2016_total.json"), "r") as rh:
         data = json.load(rh)
     map_data = _get_map_data(data, "A_MEAN")
-    print(map_data)
-    # DO STUFF HERE
-
     return jsonify(map_data)
 
 def _get_map_data(raw_data, col_name):
@@ -37,7 +34,7 @@ def _get_map_data(raw_data, col_name):
         val = float(str_val)
         map_dict["areas"].append({"id": formatted_st_code, "value": val})
     return map_dict
- 
+
 @app.route("/major/<string:state>")
 def get_state_data(state):
     with open(os.path.join(SITE_ROOT, "templates/json/state_M2016_major.json"), "r") as rh:

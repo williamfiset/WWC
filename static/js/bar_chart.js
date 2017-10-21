@@ -5,12 +5,11 @@ $.ajax({
   url: "/major/AL",
   type: "GET",
   dataType: "json"
-}).done(function(result) {
-  var data = result;
-  for (var pair in data["major_salary_pairs"]) {
+}).done(function(data) {
+  data["major_salary_pairs"].forEach(function(pair) {
     MAJORS.push(pair["major"]);
     SALARIES.push(pair["salary"]);
-  }
+  });
 });
 
 var color = Chart.helpers.color;
@@ -44,4 +43,3 @@ window.onload = function() {
     });
 
 };
-
