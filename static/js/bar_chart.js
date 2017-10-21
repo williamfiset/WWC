@@ -1,4 +1,4 @@
-function display_bar(state_id, state_name) {	
+function display_bar(state_id, state_name) {
         console.log(state_id);
         console.log(state_name);
         var MAJORS = [];
@@ -14,7 +14,11 @@ function display_bar(state_id, state_name) {
 	    MAJORS.push(pair["major"]);
 	    SALARIES.push(pair["salary"]);
 	  });
-	  console.log(MAJORS);
+
+      if (window.myHorizontalBar !== undefined) {
+          window.myHorizontalBar.destroy();
+      }
+
 	  var color = Chart.helpers.color;
 	  var barChartData = {
 	    labels: MAJORS,
