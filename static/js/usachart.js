@@ -14,11 +14,12 @@ var map = AmCharts.makeChart( "chartdiv", {
   "areasSettings": {
     "autoZoom": false,
     "selectedColor": "#CC0000",
-    "selectable": true
+    "selectable": true,
+    "balloonText": "[[description]]"
   },
 
   "valueLegend": {
-    "right": 10,
+    "right": 5,
     "minValue": "Poor",
     "maxValue": "Rich",
     "showAsGradient": true
@@ -42,10 +43,10 @@ var map = AmCharts.makeChart( "chartdiv", {
 });
 
 function triggerSelectedStateClick(clickEvent) {
-  
+
   var stateId = clickEvent.mapObject.id;
   var stateName = clickEvent.mapObject.title;
-  
+
   console.log(stateId + " " + stateName);
 
 }
