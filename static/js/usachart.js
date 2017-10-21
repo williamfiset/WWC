@@ -16,7 +16,9 @@ var map = AmCharts.makeChart( "chartdiv", {
     "autoZoom": false,
     "selectedColor": "#CC0000",
     "selectable": true,
-    "balloonText": "[[description]]"
+    "balloonText": "[[description]]",
+    "descriptionWindowWidth": 0,
+    "descriptionWindowHeight": 0
   },
 
   "valueLegend": {
