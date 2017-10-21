@@ -1,5 +1,5 @@
-var currentIds = [];
-var currentNames = [];
+var currentInfo = [];
+var lastStateClicked = undefined;
 
 var map = AmCharts.makeChart( "chartdiv", {
 
@@ -52,26 +52,61 @@ var map = AmCharts.makeChart( "chartdiv", {
 });
 
 function bar_call() {
-    if (currentIds.length > 0) {
-        display_bar(currentIds[0].substring(3), currentNames[0]);
+    if (currentInfo.length > 0) {
+        display_bar(currentInfo[0]["state_id"], currentInfo[0]["state_name"]);
     }
 }
 
 function triggerSelectedStateClick(clickEvent) {
 
-  var stateId = clickEvent.mapObject.id;
-  var stateName = clickEvent.mapObject.title;
+  var state = clickEvent.mapObject;
+  var stateName = state.title;
+  var stateId = state.id;
 
-  if (currentIds.length > 1) {
-      currentIds[0] = stateId;
-      currentNames[0] = stateName;
-  } else {
-      currentIds.push(stateId);
-      currentNames.push(stateName);
+  state.showAsSelected = !state.showAsSelected;
+  clickEvent.chart.returnInitialColor(state);
+
+  var states = getSelectedStates();
+
+  if (states.length === 3) {
+
+    // Toggle last selected state color
+    lastStateClicked.showAsSelected = !lastStateClicked.showAsSelected;
+    clickEvent.chart.returnInitialColor(lastStateClicked);
+
   }
 
-  console.log(stateId + " " + stateName);
-  bar_call();
+  states = getSelectedStates();
+  currentInfo = getStateInfo(states);
+  console.log(currentInfo);
+
+  lastStateClicked = state;
+
+  // Rebecca here
+
+}
+
+function getStateInfo(states) {
+  var info = [];
+  for (var i = 0; i < states.length; i++) {
+    var state = states[i];
+    info.push({
+      'state_name':state.title,
+      'state_id': state.id.substring(3)
+    });
+  }
+  return info;
+}
+
+function getSelectedStates() {
+  var selected = [];
+  for(var i = 0; i < map.dataProvider.areas.length; i++) {
+    if(map.dataProvider.areas[i].showAsSelected) {
+      // var stateId = map.dataProvider.areas[i].id;
+      selected.push(map.dataProvider.areas[i]);
+    }
+  }
+  return selected;
 }
 
 map.addListener("clickMapObject", triggerSelectedStateClick);
