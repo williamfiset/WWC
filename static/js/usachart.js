@@ -27,7 +27,7 @@ var map = AmCharts.makeChart( "chartdiv", {
   },
 
   "dataLoader": {
-    "url": "/json/usa_test.json",
+    "url": "/heat_map",
     "format": "json"
   },
 
