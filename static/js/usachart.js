@@ -23,8 +23,8 @@ var map = AmCharts.makeChart( "chartdiv", {
 
   "valueLegend": {
     "right": 5,
-    "minValue": "Poor",
-    "maxValue": "Rich",
+    "minValue": "$28,740",
+    "maxValue": "$60,840",
     "showAsGradient": true
   },
 
@@ -40,6 +40,8 @@ var map = AmCharts.makeChart( "chartdiv", {
   "zoomControl": {
     "zoomControlEnabled": false
   },
+
+
 
   "zoomOnDoubleClick": false,
 
@@ -57,3 +59,5 @@ function triggerSelectedStateClick(clickEvent) {
 }
 
 map.addListener("clickMapObject", triggerSelectedStateClick);
+
+map.dragMap = false;
