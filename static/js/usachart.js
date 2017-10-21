@@ -1,3 +1,6 @@
+var currentIds = [];
+var currentNames = [];
+
 var map = AmCharts.makeChart( "chartdiv", {
 
   "type": "map",
@@ -33,8 +36,9 @@ var map = AmCharts.makeChart( "chartdiv", {
   },
 
   "dataLoader": {
-    "url": "/heat_map",
-    "format": "json"
+    "url": "/heat_map/2016/",
+    "format": "json",
+    "complete": on_complete
   },
 
   "zoomControl": {
@@ -47,15 +51,48 @@ var map = AmCharts.makeChart( "chartdiv", {
 
 });
 
+function bar_call() {
+    if (currentIds.length > 0) {
+        display_bar(currentIds[0].substring(3), currentNames[0]);
+    }
+}
+
 function triggerSelectedStateClick(clickEvent) {
 
   var stateId = clickEvent.mapObject.id;
   var stateName = clickEvent.mapObject.title;
 
+  if (currentIds.length > 1) {
+      currentIds[0] = stateId;
+      currentNames[0] = stateName;
+  } else {
+      currentIds.push(stateId);
+      currentNames.push(stateName);
+  }
+
   console.log(stateId + " " + stateName);
-
-  display_bar(stateId.substring(3), stateName);
-
+  bar_call();
 }
 
 map.addListener("clickMapObject", triggerSelectedStateClick);
+
+function on_complete() {
+    bar_call();
+
+    var min = 1000000000, max = 0;
+    for (var i = 0; i < map.dataProvider.areas.length; i++) {
+        var info = map.dataProvider.areas[i];
+        if (info["value"] < min) {
+            min = info["value"];
+        }
+        if (info["value"] > max) {
+            max = info["value"];
+        }
+    }
+
+    map.valueLegend.minValue = "$" + min;
+    map.valueLegend.maxValue = "$" + max;
+
+    map.validateData();
+
+}

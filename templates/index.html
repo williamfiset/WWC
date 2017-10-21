@@ -52,13 +52,16 @@
     </div>
   </nav>
 
-  <div class="color-header"></div>
+  <div style="padding-top: 130px;" class="container">
+    <div class="row">
+      <div class="col-lg" style="text-align: center;">
+        <input type="range" min="2012" max="2016" value="2016" class="slider" id="yearSlider">
+        <span>2016</span>
+      </div>
+    </div>
+  </div>
 
-  <!-- <div class="textstyling">
-    Lorem ipsum dolor sit amet, agam tota posse nec cu. Duo eu elit dolorum, fabulas utroque id nam, nec ex phaedrum prodesset conceptam. Nec principes repudiare ne, id sale liber eum. Vis ei equidem meliore.
-  </div> -->
-
-  <section id="wealth_map">
+  <section style="padding: 0px;" id="wealth_map">
     <div class="container">
       <div id="chartdiv">
 
@@ -77,6 +80,7 @@
   <script src="{{ url_for('static', filename='js/scrollreveal.js') }}"></script>
   <script src="{{ url_for('static', filename='js/jquery.magnific-popup.js') }}"></script>
   <script src="{{ url_for('static', filename='js/creative.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/year.js') }}"></script>
 
 
 </body>

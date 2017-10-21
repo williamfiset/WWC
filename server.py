@@ -17,9 +17,9 @@ def render(file_name):
         file_name = "%s.json" % (file_name,)
     return render_template("json/%s" % (file_name,))
 
-@app.route("/heat_map")
-def muh_data():
-    with open(os.path.join(SITE_ROOT, "templates/json/state_M2016_total.json"), "r") as rh:
+@app.route("/heat_map/<string:year>/")
+def muh_data(year):
+    with open(os.path.join(SITE_ROOT, "templates/json/state_M%s_total.json" % (year,)), "r") as rh:
         data = json.load(rh)
     map_data = _get_map_data(data, "A_MEAN")
     return jsonify(map_data)
@@ -42,9 +42,9 @@ def _get_map_data(raw_data, col_name):
             })
     return map_dict
 
-@app.route("/major/<string:state>")
-def get_state_data(state):
-    with open(os.path.join(SITE_ROOT, "templates/json/state_M2016_major.json"), "r") as rh:
+@app.route("/major/<string:year>/<string:state>")
+def get_state_data(year, state):
+    with open(os.path.join(SITE_ROOT, "templates/json/state_M%s_major.json" % (year,)), "r") as rh:
         data = json.load(rh)
     state_data = _get_state_data(data, state)
     return jsonify(state_data)

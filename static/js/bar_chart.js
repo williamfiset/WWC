@@ -1,9 +1,10 @@
 function display_bar(state_id, state_name) {
         console.log(state_id);
         console.log(state_name);
+        console.log(window.year);
         var MAJORS = [];
 	var SALARIES = [];
-        var URL = "/major/" + state_id;
+        var URL = "/major/" + window.year + "/" + state_id
 
 	$.ajax({
 	  url: URL,
