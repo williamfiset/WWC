@@ -49,6 +49,9 @@ function triggerSelectedStateClick(clickEvent) {
   var stateName = clickEvent.mapObject.title;
 
   console.log(stateId + " " + stateName);
+
+  display_bar(stateId.substring(3), stateName);
+
 }
 
 map.addListener("clickMapObject", triggerSelectedStateClick);
