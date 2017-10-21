@@ -36,4 +36,12 @@ var map = AmCharts.makeChart( "chartdiv", {
 
 });
 
+function triggerSelectedStateClick(clickEvent) {
+  var stateId = clickEvent.mapObject.id;
+  var stateName = clickEvent.mapObject.title;
+  console.log(stateId + " " + stateName);
+}
+
 console.log(map);
+
+map.addListener("clickMapObject", triggerSelectedStateClick);
