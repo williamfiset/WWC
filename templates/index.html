@@ -15,6 +15,7 @@
 
     <!-- Chart code -->
     <script src="{{ url_for('static', filename='js/usachart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bar_chart.js') }}"></script>
 
     <!-- Example to show how to ajax the json data. Json data should be
          stored in the templates folder and can be accessed by using
@@ -37,5 +38,8 @@
     <h1> Hello World! </h1>
     <!-- HTML -->
     <div id="chartdiv"></div>
+    <div id="bardiv">
+      <canvas id="canvas" width="1896" height="948" class="chartjs-render-monitor" style="display: block; height: 474px; width: 948px;"></canvas>
+    </div>
 
 </body>
