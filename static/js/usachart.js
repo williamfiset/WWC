@@ -13,7 +13,8 @@ var map = AmCharts.makeChart( "chartdiv", {
 
   "areasSettings": {
     "autoZoom": false,
-    "selectedColor": "#CC0000"
+    "selectedColor": "#CC0000",
+    "selectable": true
   },
 
   "valueLegend": {
@@ -32,7 +33,7 @@ var map = AmCharts.makeChart( "chartdiv", {
   },
 
   "zoomOnDoubleClick": false,
-    
+
 });
 
 console.log(map);
