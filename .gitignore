@@ -1,2 +1,4 @@
 *.swap
 __pycache__
+*.pyc
+*.swp
