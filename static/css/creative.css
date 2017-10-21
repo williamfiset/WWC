@@ -83,6 +83,10 @@ body {
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   transition: all 0.2s; }
+  #mainNav.navbar-shrink {
+    border-color: rgba(34, 34, 34, 0.05);
+    background-color: white;
+  }
   #mainNav .navbar-brand {
     font-weight: 700;
     text-transform: uppercase;
@@ -115,19 +119,6 @@ body {
     #mainNav {
       border-color: rgba(255, 255, 255, 0.3);
       background-color: transparent; }
-      #mainNav .navbar-brand {
-        color: rgba(255, 255, 255, 0.7); }
-        #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-          color: white; }
-      #mainNav .navbar-nav > li.nav-item > a.nav-link,
-      #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
-        color: rgba(255, 255, 255, 0.7); }
-        #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
-        #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-          color: white; }
-      #mainNav.navbar-shrink {
-        border-color: rgba(34, 34, 34, 0.05);
-        background-color: white; }
         #mainNav.navbar-shrink .navbar-brand {
           font-size: 16px;
           color: #F05F40; }
@@ -145,7 +136,6 @@ header.masthead {
   width: 100%;
   min-height: auto;
   text-align: center;
-  color: white;
   background-image: url("../img/header.jpg");
   background-position: center;
   -webkit-background-size: cover;

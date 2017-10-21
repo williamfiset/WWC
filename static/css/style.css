@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: rgb(220, 220, 220) !important;
+  background-color: rgb(240, 240, 240) !important;
 }
 
 #bardiv {
@@ -12,4 +12,6 @@ body {
   margin: 20px;
 }
 
+h1, h2, h3, h4, h5, h6, a {
+  color: #eb3812;
 }

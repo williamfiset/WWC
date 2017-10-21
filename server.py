@@ -4,6 +4,9 @@ app = Flask(__name__)
 
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 
+def parse_money(money):
+    return float(money.replace(",", ""))
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -30,9 +33,12 @@ def _get_map_data(raw_data, col_name):
     for state_data in raw_data:
         st_code = state_data["ST"]
         formatted_st_code = "US-" + st_code
-        str_val = state_data[col_name].replace(",", "")
-        val = float(str_val)
-        map_dict["areas"].append({"id": formatted_st_code, "value": val})
+        val = parse_money(state_data[col_name])
+        map_dict["areas"].append({
+            "id": formatted_st_code,
+            "value": val,
+            "description": "Average Annual Income: $%s\nMedian Annual Income: $%s" % (state_data[col_name], state_data["A_MEDIAN"])
+        })
     return map_dict
 
 @app.route("/major/<string:state>")
