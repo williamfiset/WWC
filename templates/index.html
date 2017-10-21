@@ -10,8 +10,27 @@
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
     <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
+    <!-- JahQuery -->
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+
     <!-- Chart code -->
     <script src="{{ url_for('static', filename='js/usachart.js') }}"></script>
+
+    <!-- Example to show how to ajax the json data. Json data should be
+         stored in the templates folder and can be accessed by using
+         /json/filename -->
+    <script type="text/javascript">
+      $.ajax({
+        url: "/json/test",
+        type: "GET",
+        dataType: "json"
+      }).done(function(result) {
+        var data = result;
+        // Access the properties of the json result
+        // data.asdf -> basdf
+      });
+
+    </script>
 </head>
 <body>
 
