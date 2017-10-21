@@ -48,7 +48,7 @@ def get_state_data():
 def _get_state_data(data, state):
     state_dict = {"state": state, "major_salary_pairs": []}
     for state_data in data:
-        if state_data["ST"] = state:
+        if state_data["ST"] == state:
             major = state_data["OCC_TITLE"]
             salary = float(state_data["A_MEAN"])
             state_dict["major_salary_pairs"].append({"major": major, "salary": salary})
