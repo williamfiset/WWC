@@ -80,6 +80,7 @@ function triggerSelectedStateClick(clickEvent) {
   lastStateClicked = state;
   
   // Rebecca here
+  display_bar(info);
 
 }
 
