@@ -20,7 +20,8 @@ var map = AmCharts.makeChart( "chartdiv", {
   "valueLegend": {
     "right": 10,
     "minValue": "Poor",
-    "maxValue": "Rich"
+    "maxValue": "Rich",
+    "showAsGradient": true
   },
 
   "export": {
@@ -33,7 +34,7 @@ var map = AmCharts.makeChart( "chartdiv", {
   },
 
   "zoomControl": {
-      "zoomControlEnabled": false
+    "zoomControlEnabled": false
   },
 
   "zoomOnDoubleClick": false,
