@@ -47,6 +47,8 @@ function triggerSelectedStateClick(clickEvent) {
   
   console.log(stateId + " " + stateName);
 
+  display_bar(stateId.substring(3), stateName);
+
 }
 
 console.log(map);
