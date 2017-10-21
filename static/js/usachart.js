@@ -13,7 +13,8 @@ var map = AmCharts.makeChart( "chartdiv", {
 
   "areasSettings": {
     "autoZoom": false,
-    "selectedColor": "#CC0000"
+    "selectedColor": "#CC0000",
+    "selectable": true
   },
 
   "valueLegend": {
@@ -23,7 +24,7 @@ var map = AmCharts.makeChart( "chartdiv", {
   },
 
   "export": {
-    "enabled": true
+    "enabled": false
   },
 
   "dataLoader": {
@@ -31,8 +32,23 @@ var map = AmCharts.makeChart( "chartdiv", {
     "format": "json"
   },
 
+  "zoomControl": {
+      "zoomControlEnabled": false
+  },
+
   "zoomOnDoubleClick": false,
-    
+
 });
 
+function triggerSelectedStateClick(clickEvent) {
+  
+  var stateId = clickEvent.mapObject.id;
+  var stateName = clickEvent.mapObject.title;
+  
+  console.log(stateId + " " + stateName);
+
+}
+
 console.log(map);
+
+map.addListener("clickMapObject", triggerSelectedStateClick);
