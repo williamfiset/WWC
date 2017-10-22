@@ -54,8 +54,9 @@ function display_bar(state_info) {
   	    },
   	    responsive: true,
   	    title: {
-  	      display: true,
-  	      text: state_name,
+			display: true,
+			text: state_name,
+			fontSize: 20
   	    },
             tooltips: {
               enabled:false,
@@ -92,9 +93,10 @@ function display_double_bar(state_id1, state_name1, state_id2, state_name2) {
         var index = MAJORS.indexOf(pair2["major"]);
         if (MIN_SALARIES[index] > pair2["salary"]) {
           MIN_SALARIES[index] = pair2["salary"];
+          ST1_SALARIES[index] = ST1_SALARIES[index] - pair2["salary"];
           ST2_SALARIES.push(0);
         } else {
-          ST2_SALARIES.push(pair2["salary"]);
+          ST2_SALARIES.push(pair2["salary"] - MIN_SALARIES[index]);
           ST1_SALARIES[index] = 0;
         }
       });
@@ -139,8 +141,9 @@ function display_double_bar(state_id1, state_name1, state_id2, state_name2) {
           },
           responsive: true,
           title: {
-            display: true,
-            text: state_name1 + " vs. " + state_name2,
+              display: true,
+              text: state_name1 + " vs. " + state_name2,
+			  fontSize:20
           },
           tooltips: {
             enabled: false,
