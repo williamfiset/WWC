@@ -1,4 +1,4 @@
-function display_bar(state_info) {
+function display_bar(state_info) {	
 
   state_id = "";
   state_name = "";
@@ -15,11 +15,11 @@ function display_bar(state_info) {
     display_double_bar(id1, name1, id2, name2);
     return;
   }
-
+  
   var MAJORS = [];
   var SALARIES = [];
   var URL = "/major/" + window.year + "/" + state_id;
-
+  
   $.ajax({
     url: URL,
     type: "GET",
@@ -65,13 +65,13 @@ function display_bar(state_info) {
   });
 }
 
-function display_double_bar(state_id1, state_name1, state_id2, state_name2) {
+function display_double_bar(state_id1, state_name1, state_id2, state_name2) {	
   var MAJORS = [];
   var MIN_SALARIES = [];
   var ST1_SALARIES = [];
   var ST2_SALARIES = [];
-  var URL1 = "/major/" + window.year + "/" + state_id1;
-  var URL2 = "/major/" + window.year + "/" + state_id2;
+  var URL1 = "/major/" +  window.year + "/" + state_id1;
+  var URL2 = "/major/" +  window.year + "/" + state_id2;
 
   $.ajax({
     url: URL1,
@@ -81,8 +81,8 @@ function display_double_bar(state_id1, state_name1, state_id2, state_name2) {
     data["major_salary_pairs"].forEach(function(pair) {
       MAJORS.push(pair["major"]);
       MIN_SALARIES.push(pair["salary"]);
-      ST1_SALARIES.push(pair["salary"]);
-    });
+      ST1_SALARIES.push(pair["salary"]); 
+    }); 
     $.ajax({
       url: URL2,
       type: "GET",
@@ -133,9 +133,8 @@ function display_double_bar(state_id1, state_name1, state_id2, state_name2) {
             filter: function(legendItem, chartData) {
               console.log(legendItem.text);
               if (legendItem.text == 'Buffer') {
-                return false;
+                legendItem.hidden = true;
               }
-              return true;
             }
           },
           responsive: true,
