@@ -57,8 +57,6 @@ function bar_call() {
 
 function triggerSelectedStateClick(clickEvent) {
 
-    console.log(clickEvent);
-
   var state = clickEvent.mapObject;
   var stateName = state.title;
   var stateId = state.id;
@@ -68,17 +66,18 @@ function triggerSelectedStateClick(clickEvent) {
 
   var states = getSelectedStates();
 
+  console.log(states);
+
   if (states.length === 3) {
 
     // Toggle last selected state color
-    lastStateClicked.showAsSelected = !lastStateClicked.showAsSelected;
+    lastStateClicked.showAsSelected = false;
     clickEvent.chart.returnInitialColor(lastStateClicked);
 
   }
 
   states = getSelectedStates();
   currentInfo = getStateInfo(states);
-  console.log(currentInfo);
 
   lastStateClicked = state;
 
@@ -136,11 +135,17 @@ function on_complete() {
             }
         }
 
+        if (lastStateClicked != undefined && info["id"] == lastStateClicked["id"]) {
+            lastStateClicked = info;
+        }
+
     }
 
     map.valueLegend.minValue = "$" + min;
     map.valueLegend.maxValue = "$" + max;
 
     map.validateData();
+
+    console.log(map);
 
 }
