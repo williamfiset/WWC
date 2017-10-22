@@ -54,10 +54,13 @@ function display_bar(state_info) {
   	    },
   	    responsive: true,
   	    title: {
-  		display: true,
-  		text: state_name,
-		fontSize: 20
+			display: true,
+			text: state_name,
+			fontSize: 20
   	    },
+            tooltips: {
+              enabled:false,
+            }
           }
       });
   });
@@ -108,14 +111,14 @@ function display_double_bar(state_id1, state_name1, state_id2, state_name2) {
             data: MIN_SALARIES,
         },
         {
-            label: 'State1',
+            label: state_name1 + " > " + state_name2,
             backgroundColor: color(window.chartColors.orange).alpha(0.5).rgbString(),
             borderColor: window.chartColors.orange,
             borderWidth: 1,
             data: ST1_SALARIES,
         },
         {
-            label: 'State2',
+            label: state_name2 + " > " + state_name1,
             backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
             borderColor: window.chartColors.blue,
             borderWidth: 1,
@@ -128,17 +131,22 @@ function display_double_bar(state_id1, state_name1, state_id2, state_name2) {
         data: barChartData,
         options: {
           legend: {
-            display: false,
+            filter: function(legendItem, chartData) {
+              console.log(legendItem.text);
+              if (legendItem.text == 'Buffer') {
+                return false;
+              }
+              return true;
+            }
           },
           responsive: true,
           title: {
               display: true,
               text: state_name1 + " vs. " + state_name2,
-	      fontSize:20
+			  fontSize:20
           },
           tooltips: {
-              mode: 'index',
-              index: false,
+            enabled: false,
           },
           scales: {
             yAxes: [{
