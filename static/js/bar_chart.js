@@ -56,6 +56,7 @@ function display_bar(state_info) {
   	    title: {
   		display: true,
   		text: state_name,
+		fontSize: 20
   	    },
           }
       });
@@ -133,6 +134,7 @@ function display_double_bar(state_id1, state_name1, state_id2, state_name2) {
           title: {
               display: true,
               text: state_name1 + " vs. " + state_name2,
+	      fontSize:20
           },
           tooltips: {
               mode: 'index',
