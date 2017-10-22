@@ -107,7 +107,8 @@ function display_double_bar(state_id1, state_name1, state_id2, state_name2) {
       var barChartData = {
         labels: MAJORS,
         datasets: [{
-            label: 'Buffer',
+            label: '',
+            showInLegend: false,
             backgroundColor: color(window.chartColors.blue).alpha(0).rgbString(),
             data: MIN_SALARIES,
         },
@@ -131,14 +132,6 @@ function display_double_bar(state_id1, state_name1, state_id2, state_name2) {
         type: 'horizontalBar',
         data: barChartData,
         options: {
-          legend: {
-            filter: function(legendItem, chartData) {
-              console.log(legendItem.text);
-              if (legendItem.text == 'Buffer') {
-                legendItem.hidden = true;
-              }
-            }
-          },
           responsive: true,
           title: {
               display: true,
