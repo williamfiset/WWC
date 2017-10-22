@@ -52,12 +52,12 @@ var map = AmCharts.makeChart( "chartdiv", {
 });
 
 function bar_call() {
-    if (currentInfo.length > 0) {
-        display_bar(currentInfo[0]["state_id"], currentInfo[0]["state_name"]);
-    }
+    display_bar(currentInfo);
 }
 
 function triggerSelectedStateClick(clickEvent) {
+
+    console.log(clickEvent);
 
   var state = clickEvent.mapObject;
   var stateName = state.title;
@@ -83,6 +83,7 @@ function triggerSelectedStateClick(clickEvent) {
   lastStateClicked = state;
 
   // Rebecca here
+  bar_call();
 
 }
 
@@ -114,6 +115,10 @@ map.addListener("clickMapObject", triggerSelectedStateClick);
 function on_complete() {
     bar_call();
 
+    for (var i = 0; i < currentInfo.length; i++) {
+        selected_state = currentInfo[i];
+    }
+
     var min = 1000000000, max = 0;
     for (var i = 0; i < map.dataProvider.areas.length; i++) {
         var info = map.dataProvider.areas[i];
@@ -123,6 +128,14 @@ function on_complete() {
         if (info["value"] > max) {
             max = info["value"];
         }
+
+        for (var j = 0; j < currentInfo.length; j++) {
+            var check = currentInfo[j];
+            if (info["id"].substring(3) == check["state_id"]) {
+                info.showAsSelected = true;
+            }
+        }
+
     }
 
     map.valueLegend.minValue = "$" + min;
