@@ -1,3 +1,4 @@
+var currentInfo = [];
 var lastStateClicked = undefined;
 
 var map = AmCharts.makeChart( "chartdiv", {
@@ -16,7 +17,7 @@ var map = AmCharts.makeChart( "chartdiv", {
   "areasSettings": {
     "accessibleLabel": "",
     "autoZoom": false,
-    "selectedColor": "#CC0000",
+    "selectedColor": "#eb3812",
     "selectable": true,
     "balloonText": "<b>[[title]]</b><br />Average Annual Income: $[[value]]",
     "descriptionWindowWidth": 0,
@@ -35,8 +36,9 @@ var map = AmCharts.makeChart( "chartdiv", {
   },
 
   "dataLoader": {
-    "url": "/heat_map",
-    "format": "json"
+    "url": "/heat_map/2016/",
+    "format": "json",
+    "complete": on_complete
   },
 
   "zoomControl": {
@@ -49,38 +51,38 @@ var map = AmCharts.makeChart( "chartdiv", {
 
 });
 
-// Color Persistence
-// Deselect state
-// Select state
-// 2 global variables
+function bar_call() {
+    display_bar(currentInfo);
+}
 
 function triggerSelectedStateClick(clickEvent) {
-  
+
   var state = clickEvent.mapObject;
   var stateName = state.title;
   var stateId = state.id;
-  
+
   state.showAsSelected = !state.showAsSelected;
   clickEvent.chart.returnInitialColor(state);
-  
+
   var states = getSelectedStates();
-  
+
+  console.log(states);
+
   if (states.length === 3) {
-    
+
     // Toggle last selected state color
-    lastStateClicked.showAsSelected = !lastStateClicked.showAsSelected;
+    lastStateClicked.showAsSelected = false;
     clickEvent.chart.returnInitialColor(lastStateClicked);
-    
+
   }
-  
+
   states = getSelectedStates();
-  var info = getStateInfo(states);
-  console.log(info);
+  currentInfo = getStateInfo(states);
 
   lastStateClicked = state;
-  
+
   // Rebecca here
-  display_bar(info);
+  bar_call();
 
 }
 
@@ -109,3 +111,41 @@ function getSelectedStates() {
 
 map.addListener("clickMapObject", triggerSelectedStateClick);
 
+function on_complete() {
+    bar_call();
+
+    for (var i = 0; i < currentInfo.length; i++) {
+        selected_state = currentInfo[i];
+    }
+
+    var min = 1000000000, max = 0;
+    for (var i = 0; i < map.dataProvider.areas.length; i++) {
+        var info = map.dataProvider.areas[i];
+        if (info["value"] < min) {
+            min = info["value"];
+        }
+        if (info["value"] > max) {
+            max = info["value"];
+        }
+
+        for (var j = 0; j < currentInfo.length; j++) {
+            var check = currentInfo[j];
+            if (info["id"].substring(3) == check["state_id"]) {
+                info.showAsSelected = true;
+            }
+        }
+
+        if (lastStateClicked != undefined && info["id"] == lastStateClicked["id"]) {
+            lastStateClicked = info;
+        }
+
+    }
+
+    map.valueLegend.minValue = "$" + min;
+    map.valueLegend.maxValue = "$" + max;
+
+    map.validateData();
+
+    console.log(map);
+
+}
